@@ -1,0 +1,17 @@
+Feature extraction creates new features from functions of the original features, whereas feature selection returns a subset of the features.
+
+Feature extraction:
+* Logistic regression and probit regression 
+
+
+* Generalised Hough transform (or just Hough transform)
+* Edge or Corner detection
+
+
+-------------
+prcomp(labelled_data)
+
+SVM - 15:36:09 to 16:14:33 (~= 40 mins) 
+      16:55:36 to 17:28:34 (~= 35 mins) [model only]
+
+kNN - 16:15:34 to 16:50:57 (~= 35 mins)

@@ -1,0 +1,28 @@
+Hand-written Digit Recognizer
+
+Problem Description
+
+The goal of the "Digit Recognizer" Kaggle competition is to take images of single handwritten digits (0-9) and determine what the digits are. Solutions are evaluated on the percentage of digits that are correctly identified.
+
+
+Analysis Approach
+
+Using the fact that image data does not naturally conform to mathematical relationships, classifiers that use a similarity or distance function, such as Support-Vector Machine (SVM) and k-Nearest Neighbour (kNN), were considered to perform the predictions. The labelled dataset was split 60/40 into training and test data to determine the accuracy of each classifier model, by comparing the test set model-predictions with their associated labelled values. The entire labelled dataset was then used to train a new model using the kNN classifier and the unlabelled dataset was used to produce predictions in the specified output format.
+
+
+Initial Solution
+
+The solution was written in R using the "e1071" (SVM) and "class" (kNN) packages to make models and associated predictions. The labelled data was split by random sampling of the data indices (using the "sample" function). The "svm" function was used to generate models which were subsequently used to make predictions with the "predict" function. The "knn" function provided its own predictions and was used with k=3 to facilitate higher model accuracy.
+
+
+Initial Solution Analysis
+
+While my Kaggle evaluation score was 0.96857 (96.9%, top scorers got 100%), the classifiers demonstrated long execution times (> 2 hours), with the longest time spent training the models. This was most likely due to the high dimensionality of the data (images were 28x28 pixels, with each pixel value represented in a column, i.e. 784 in total). To reduce execution times I investigated techniques to perform dimensionality reduction on the data, which would make simpler and therefore less computationally intensive models. 
+
+
+Revised Solution and Analysis
+
+Although I attempted to reduce the dimensionality using Principle Component Analysis (PCA), the reduced dimension dataset maintained the initial dimensionality. I also attempted to shift the digit images to the top-left of the 28x28 grid to increase the likelihood of similar pixels being occupied for the same digit, but the computational resources/time required to do this negated any computational gains in model predictions. In the end I was unable to make any changes that would improve computational efficiency while maintaining/improving the prediction success rate.
+
+
+
