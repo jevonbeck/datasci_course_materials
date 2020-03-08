@@ -5,6 +5,13 @@ setwd('C:/Users/jbeckles/OneDrive - Scott Logic Ltd/Documents/Personal/Coursera/
 seattle <- read.csv('seattle_incidents_summer_2014.csv')
 sanfrancisco <- read.csv('sanfrancisco_incidents_summer_2014.csv')
 
+
+# library(RCurl)
+# seattle_download <- getURL("https://raw.githubusercontent.com/uwescience/datasci_course_materials/master/assignment6/seattle_incidents_summer_2014.csv")
+# sanfrancisco_download <- getURL("https://raw.githubusercontent.com/uwescience/datasci_course_materials/master/assignment6/sanfrancisco_incidents_summer_2014.csv")
+# seattle <- read.csv(text = seattle_download)
+# sanfrancisco <- read.csv(text = sanfrancisco_download)
+
 weekday_levels <- c('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
 normalise_seattle <- function(seattle) {
   date_time <- strptime(as.character(seattle$Occurred.Date.or.Date.Range.Start), format = '%m/%d/%Y %I:%M:%S %p')
@@ -67,10 +74,14 @@ grouped_bar_data <- as.data.frame(result_data %>% group_by(City, DayOfWeek, Hour
 
 # comparison of Major crimes by city
 ggplot(grouped_bar_data, aes(fill=City, y=Incidents, x=Category)) + geom_bar(position="dodge", stat="identity")
+options(plot.width)
+#ggsave('./categories.png')
 
 # comparison of Crime Time (DayOfWeek/Hour) by city
 ggplot(grouped_bar_data, aes(fill=City,y=Incidents, x=Hour)) + facet_grid(DayOfWeek ~ City) + geom_bar(stat='identity', show.legend = FALSE)
+ggsave('./weekday_hours.png')
 
 # Deeper inspection of 12pm crime spike by city
 time_filtered <- grouped_bar_data[as.integer(as.character(grouped_bar_data$Hour)) %in% 10:14,]
 ggplot(time_filtered, aes(fill=City,y=Incidents, x=Hour)) + facet_grid(City ~ Category) + geom_bar(position="dodge",stat='identity', show.legend = FALSE)
+ggsave('./spike_point_categories.png')
