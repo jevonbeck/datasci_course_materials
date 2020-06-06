@@ -8,7 +8,7 @@ library(rpart)
 library(randomForest)
 library(e1071)
 
-setwd('C:/Users/jbeckles/OneDrive - Scott Logic Ltd/Documents/Personal/Coursera/DataScienceAtScale/DataManipulation/datasci_course_materials/assignment5')
+setwd('C:/Users/jbeckles/OneDrive - Scott Logic Ltd/Documents/Personal/Coursera/DataScienceAtScale/datasci_course_materials/assignment5')
 
 # Read data set
 records <- read.csv('seaflow_21min.csv')

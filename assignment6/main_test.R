@@ -74,7 +74,7 @@ grouped_bar_data <- as.data.frame(result_data %>% group_by(City, DayOfWeek, Hour
 
 # comparison of Major crimes by city
 ggplot(grouped_bar_data, aes(fill=City, y=Incidents, x=Category)) + geom_bar(position="dodge", stat="identity")
-options(plot.width)
+
 #ggsave('./categories.png')
 
 # comparison of Crime Time (DayOfWeek/Hour) by city
